@@ -1,14 +1,11 @@
 const express = require('express')
 const app = express()
-const port = 8008	
+const port = 3002
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-app.get("/url", (req, res, next) => {
- res.json(["Tony","Lisa","Michael","Ginger","Food"]);
-});
 
 
 app.get('/GetHistorial', function (req, res) {
@@ -69,14 +66,14 @@ app.post('/PostHistorial', function (req, res) {
 
         // se crea el Request Object
         var request = new sql.Request();
-        var EmailHeader = req.header('Email');
+        var UsuarioHeader = req.header('Usuario');
         var NombreHeader = req.header('NombreCancion');
 		var AlbumHeader = req.header('NombreAlbum');
         var NombreArtistaHeader = req.header('NombreArtista');
         var DuracionHeader = req.header('Duracion');
         var LinkReproduccionHeader = req.header('LinkReproduccion');
         // Se insertan los datos en la base
-        var query = 'INSERT INTO HISTORIAL(Email,NombreCancion,NombreAlbum,NombreArtista,Duracion,LinkReproduccion) VALUES (\''+EmailHeader+'\',\''+
+        var query = 'INSERT INTO HISTORIAL(Usuario,NombreCancion,NombreAlbum,NombreArtista,Duracion,LinkReproduccion) VALUES (\''+UsuarioHeader+'\',\''+
         NombreHeader+'\',\''+AlbumHeader+'\',\''+NombreArtistaHeader+'\',\''+DuracionHeader+'\',\''+LinkReproduccionHeader+'\');';
 
         request.query(query, function (err, recordset) {
